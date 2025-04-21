@@ -135,7 +135,6 @@ a{
 
 .nav-links{
     display: none;
-    /* display: flex; */
     gap: 1.25rem;
     align-items: center;
 }
