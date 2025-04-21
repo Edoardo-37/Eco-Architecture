@@ -1,6 +1,6 @@
-const hamburgerContainer = document.querySelector('.ham-menu');
+const hamburgerContainer = document.querySelector('.hamburger-container');
 const hamburgerMenu = document.querySelector('.menu')
-const hamburgerIcon = document.querySelector('.ham-menu > svg');
+const hamburgerIcon = document.querySelector('.hamburger-container > svg');
 const navLinks = document.querySelector('.nav-links');
 let isMenuOpen = false;
 
