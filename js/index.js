@@ -1,9 +1,8 @@
 const hamburgerContainer = document.querySelector('.hamburger-container');
 const hamburgerMenu = document.querySelector('.menu')
-const hamburgerIcon = document.querySelector('.hamburger-container > svg');
+const hamburgerBars = document.querySelectorAll('.bar');
 const navLinks = document.querySelector('.nav-links');
 let isMenuOpen = false;
-
 // lazy load
 const images = document.querySelectorAll('.not-loaded');
 
@@ -11,9 +10,7 @@ hamburgerContainer.addEventListener('click', () => {
     if (!isMenuOpen) {
         hamburgerMenu.classList.remove('hidden');
         hamburgerMenu.classList.add('visible');
-        hamburgerIcon.style.display = 'none'
-        hamburgerContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" /></svg></svg>`;
+        hamburgerBars.forEach((bar) => bar.classList.add('clicked')) ;
         hamburgerMenu.innerHTML = `
         <ul class=hamMenu-links> 
             <li><a href=#storia>Il concetto</a></li>
@@ -25,7 +22,7 @@ hamburgerContainer.addEventListener('click', () => {
     } else if (isMenuOpen == true) {
         hamburgerMenu.classList.remove('visible');
         hamburgerMenu.classList.add('hidden');
-        hamburgerContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /> </svg>`
+        hamburgerBars.forEach((bar) => bar.classList.remove('clicked')) ;
         hamburgerMenu.innerHTML = ``
         isMenuOpen = false;
     }
