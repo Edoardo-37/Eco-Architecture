@@ -118,12 +118,11 @@ nav{
 .logo{
     font-size: var(--fs-md);
     font-weight: 800;
-    transition: scale 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .logo:hover{
-    color: var(--green);
-    scale: 1.1;
+    transform: scale(1.05);
 }
 
 a{
@@ -143,22 +142,44 @@ a{
     transition: letter-spacing 0.5s ease;
 }
 :is(.nav-links, .hamMenu-links) li a:hover{
-    font-weight: bolder;
-    letter-spacing: 3px;
-}
-:is(.nav-links, .hamMenu-links) li a:active{
-    scale: 0.95;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
 /* Hamburger */
 .hamburger-container{
     display: flex;
+    flex-direction: column;
     cursor: pointer;
-    width: 34px;
+    width: 30px;
+    gap: 0.25rem;
 }
 .hamburger-container:active{
-    scale: 0.90;
+    transform: scale(0.90);
     transition: all 0.5s;
+}
+
+.bar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 4px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    background-color: var(--primary-text-color);
+}
+
+.bar.clicked:nth-child(1){
+    transform: rotate(45deg) translate(8px, 6px);
+    transition: ease-out 0.3s;
+}
+.bar.clicked:nth-child(2){
+    transform: scale(0);
+    transition: ease-out 0.3s;
+}
+.bar.clicked:nth-child(3){
+    transform: rotate(-45deg) translate(5px, -3px);
+    transition: ease-out 0.3s;
 }
 .menu{
     background-color:var(--hamburger-Menu-bg);
