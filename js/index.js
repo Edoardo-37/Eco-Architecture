@@ -3,6 +3,21 @@ const nav = document.querySelector('nav')
 const navLinks = document.querySelector('.nav-links');
 const images = document.querySelectorAll('.not-loaded');  // lazy load
 
+// progressive bar
+window.addEventListener('scroll', handleScroll);
+
+function handleScroll() {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    document.getElementById("progressBar").style.width = scrolled + "%";
+}
+
+// setting scroll-padding-top css property value with the exact navbar height
+const navHeight = nav.offsetHeight
+document.documentElement.style.setProperty('--navHeight', `${navHeight}px`)
+
+// hamburger menu toggle
 hamburgerContainer.addEventListener('click', () => {
     nav.classList.toggle('mobile');
     const expanded = hamburgerContainer.getAttribute('aria-expanded') === 'true'
@@ -20,16 +35,6 @@ if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     toggleThemeBtn.checked = true;
 } else {
     toggleThemeBtn.checked = false;
-}
-
-// progressive bar
-window.addEventListener('scroll', handleScroll);
-
-function handleScroll() {
-    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
-    document.getElementById("progressBar").style.width = scrolled + "%";
 }
 
 //  lazy loading
