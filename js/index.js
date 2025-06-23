@@ -1,31 +1,12 @@
 const hamburgerContainer = document.querySelector('.hamburger-container');
-const hamburgerMenu = document.querySelector('.menu')
-const hamburgerBars = document.querySelectorAll('.bar');
+const nav = document.querySelector('nav')
 const navLinks = document.querySelector('.nav-links');
-let isMenuOpen = false;
-// lazy load
-const images = document.querySelectorAll('.not-loaded');
+const images = document.querySelectorAll('.not-loaded');  // lazy load
 
 hamburgerContainer.addEventListener('click', () => {
-    if (!isMenuOpen) {
-        hamburgerMenu.classList.remove('hidden');
-        hamburgerMenu.classList.add('visible');
-        hamburgerBars.forEach((bar) => bar.classList.add('clicked')) ;
-        hamburgerMenu.innerHTML = `
-        <ul class=hamMenu-links> 
-            <li><a href=#storia>Il concetto</a></li>
-            <li><a href=#bioedilizia>Bioedilizia</a></li>
-            <li><a href=#tecniche>Tecniche</a></li>
-            <li><a href=#materiali>Materiali</a></li>
-        </ul>`
-        isMenuOpen = true;
-    } else if (isMenuOpen == true) {
-        hamburgerMenu.classList.remove('visible');
-        hamburgerMenu.classList.add('hidden');
-        hamburgerBars.forEach((bar) => bar.classList.remove('clicked')) ;
-        hamburgerMenu.innerHTML = ``
-        isMenuOpen = false;
-    }
+    nav.classList.toggle('mobile');
+    const expanded = hamburgerContainer.getAttribute('aria-expanded') === 'true'
+    hamburgerContainer.setAttribute('aria-expanded', !expanded)
 });
 
 // dark mode toggle and system preferences
@@ -48,7 +29,6 @@ function handleScroll() {
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     var scrolled = (winScroll / height) * 100;
-
     document.getElementById("progressBar").style.width = scrolled + "%";
 }
 
@@ -72,9 +52,7 @@ const handleLoading = (entries, observer) => {
 }
 
 const observer = new IntersectionObserver(handleLoading, options);
-images.forEach((image) => {       // observing in a group of images
+// observing a group of images
+images.forEach((image) => {     
     observer.observe(image);
 });
-
-
-
