@@ -53,12 +53,14 @@ img[alt] {
 /*header */
 header {
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/Header-Background.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: scroll;
     /* Safari don't accept fixed as value */
-    position: relative;
 }
 
 .header-intro {
@@ -70,10 +72,8 @@ header {
     border: 1px solid white;
     border-radius: 14px;
     backdrop-filter: blur(5px);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: titleReveal 2s ease-out forwards;
 }
 
 .header-intro h1 {
@@ -81,6 +81,8 @@ header {
     font-family: var(--ff-heading);
     font-weight: bold;
     margin: 1.875rem 0.938rem 0 0.938rem;
+    opacity: 0;
+    animation: titleReveal 2s ease-out forwards;
 }
 
 .header-intro p {
@@ -91,6 +93,9 @@ header {
     padding: 1rem 0.5rem;
     justify-content: center;
     line-height: 1.8;
+    opacity: 0;
+    animation: textReveal 1.5s ease-out forwards;
+    animation-delay: 3s;
 }
 
 /* progress bar */
@@ -507,7 +512,6 @@ footer p {
 }
 
 @media (min-width: 1200px) {
-
     /* grid content */
     .materials-container {
         display: grid;
@@ -523,5 +527,27 @@ footer p {
 
     .image {
         grid-column: span 2;
+    }
+}
+
+/* keyframes */
+@keyframes titleReveal {
+    0%{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes textReveal {
+    0%{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
     }
 }
